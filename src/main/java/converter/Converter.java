@@ -8,10 +8,10 @@ import java.util.List;
 import GUI.MainViewController;
 import utility.MusicXMLCreator;
 import utility.ValidationError;
-//Hi hello world
+
 public class Converter {
 
-//	private Score score;  // this is score
+	private Score score;  
 	private MusicXMLCreator mxlc;
 	private MainViewController mvc;
 	
