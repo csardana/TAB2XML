@@ -322,7 +322,7 @@ public class MainViewController extends Application {
 	@FXML
 	private void previewButtonHandle() throws IOException {
 		System.out.println("Preview Button Clicked!");
-		JFrame frame = new JFrame("Test");
+		JFrame frame = new JFrame("Preview Music");
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         try 
         {
@@ -342,12 +342,11 @@ public class MainViewController extends Application {
         scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         JPanel inputpanel = new JPanel();
         inputpanel.setLayout(new FlowLayout());
-        JTextField input = new JTextField(20);
-        JButton button = new JButton("Enter");
+        JButton button = new JButton("Play Music");
         DefaultCaret caret = (DefaultCaret) textArea.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
         panel.add(scroller);
-        inputpanel.add(input);
+        
         inputpanel.add(button);
         panel.add(inputpanel);
         frame.getContentPane().add(BorderLayout.CENTER, panel);
@@ -355,7 +354,7 @@ public class MainViewController extends Application {
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
         frame.setResizable(false);
-        input.requestFocus();
+        
 		
 		// converter.getMusicXML() returns the MusicXML output as a String
 	}
