@@ -329,7 +329,7 @@ public class MainViewController extends Application {
 		newWindow.setY( 100);
 
 		newWindow.show();
-		
+//		chirag
 	}
 
 	public void refresh() {
