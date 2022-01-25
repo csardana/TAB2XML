@@ -117,6 +117,8 @@ public class MainViewController extends Application {
 		} catch (IOException e) {
 			Logger logger = Logger.getLogger(getClass().getName());
 			logger.log(Level.SEVERE, "Failed to create new Window.", e);
+			
+//			chirag
 		}
 	}
 
