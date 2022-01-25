@@ -36,6 +36,7 @@ import javafx.scene.control.IndexRange;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -308,6 +309,25 @@ public class MainViewController extends Application {
 	private void previewButtonHandle() throws IOException {
 		System.out.println("Preview Button Clicked!");
 		// converter.getMusicXML() returns the MusicXML output as a String
+		
+		Label secondLabel = new Label("Label");
+
+		StackPane secondaryLayout = new StackPane();
+		secondaryLayout.getChildren().add(secondLabel);
+
+		Scene secondScene = new Scene(secondaryLayout, 230, 100);
+
+		// New window (Stage)
+		Stage newWindow = new Stage();
+		newWindow.setTitle("Sheet Music");
+		newWindow.setScene(secondScene);
+
+		// Set position of second window, related to primary window.
+		newWindow.setX( 200);
+		newWindow.setY( 100);
+
+		newWindow.show();
+		
 	}
 
 	public void refresh() {
