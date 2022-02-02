@@ -19,6 +19,8 @@ import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.model.StyleSpans;
 
+import SheetMusic.Note;
+import SheetMusic.ParseIntoSheetMusic;
 import converter.Converter;
 import converter.measure.TabMeasure;
 import javafx.application.Application;
@@ -330,6 +332,17 @@ public class MainViewController extends Application {
 
 		newWindow.show();
 //		chirag
+		
+		
+
+		String xml = converter.getMusicXML();
+		ParseIntoSheetMusic parser= new ParseIntoSheetMusic(xml);
+		String[] songname = parser.parseMusicXML();
+		for (Note i :parser.getNotesOfSong()) {System.out.println(i.getPitch());}
+		
+		
+		
+		
 	}
 
 	public void refresh() {

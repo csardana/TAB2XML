@@ -27,6 +27,8 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 
     implementation group: 'org.fxmisc.richtext', name: 'richtextfx', version: '0.10.5'
+    
+    implementation 'org.jsoup:jsoup:1.14.3'
 
     implementation 'org.apache.commons:commons-csv:1.8'
 
