@@ -32,6 +32,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
-	<classpathentry kind="lib" path="/Users/csardana/Downloads/jsoup-1.14.3.jar"/>
+	<classpathentry kind="lib" path="/Users/davidhanna/Downloads/jsoup-1.14.3.jar"/>
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>
