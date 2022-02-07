@@ -475,7 +475,7 @@ public class ParseIntoSheetMusic {
     }
 
 
-    private ArrayList<Note> getAllNotes() {
+    public ArrayList<Note> getAllNotes() {
 
 
         ArrayList<Note> notesOfSong = new ArrayList<Note>();

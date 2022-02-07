@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -313,7 +314,7 @@ public class MainViewController extends Application {
 	private void previewButtonHandle() throws IOException {
 		System.out.println("Preview Button Clicked!");
 		
-		int i = 0;
+//		int i = 0;
 		// converter.getMusicXML() returns the MusicXML output as a String
 		
 		Label secondLabel = new Label("Label");
@@ -340,8 +341,10 @@ public class MainViewController extends Application {
 		String xml = converter.getMusicXML();
 		ParseIntoSheetMusic parser= new ParseIntoSheetMusic(xml);
 		String[] songname = parser.parseMusicXML();
-		for (Note i :parser.getNotesOfSong()) {System.out.println(i.getPitch());}
+		int divisions = parser.divisions;
 		
+		for (Note i :parser.getNotesOfSong()) {System.out.println(i.getPitch()+i.getOctave()+i.getDuration()+i.getMeasure());}
+		System.out.println(parser.divisions);
 		
 		
 		
