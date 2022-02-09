@@ -1,5 +1,5 @@
 package GUI;
-
+import java.awt.Graphics;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -313,7 +313,7 @@ public class MainViewController extends Application {
 	private void previewButtonHandle() throws IOException {
 		System.out.println("Preview Button Clicked!");
 		
-		int i = 0;
+		//int i = 0;
 		// converter.getMusicXML() returns the MusicXML output as a String
 		
 		Label secondLabel = new Label("Label");
