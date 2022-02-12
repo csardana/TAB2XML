@@ -15,8 +15,13 @@ public class Part {
     @JacksonXmlElementWrapper(useWrapping = false)
     @JacksonXmlProperty(localName = "measure")
     public List<Measure> measures;
+    
+    // Default Constructor:
+    public Part() {
+		super();
+	}
 
-    public Part(String id, List<Measure> measures) {
+	public Part(String id, List<Measure> measures) {
         this.id = id;
         this.measures = measures;
     }

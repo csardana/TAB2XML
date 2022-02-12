@@ -3,7 +3,12 @@ package models.measure.attributes;
 public class Key {
     public int fifths;
 
-    public Key(int fifths) {
+    // Default Constructor:
+    public Key() {
+		super();
+	}
+
+	public Key(int fifths) {
         this.fifths = fifths;
     }
 

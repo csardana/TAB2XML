@@ -25,7 +25,12 @@ public class ScorePart {
     @JacksonXmlElementWrapper(useWrapping = false)
     private List<MIDIInstrument> midiInstruments;
 
-    public ScorePart(String id, String partName) {
+    // Default Constructor:
+    public ScorePart() {
+		super();
+	}
+    
+	public ScorePart(String id, String partName) {
         this.id = id;
         this.partName = partName;
     }

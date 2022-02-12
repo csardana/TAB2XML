@@ -10,8 +10,13 @@ public class PartList {
     @JacksonXmlProperty(localName = "score-part")
     @JacksonXmlElementWrapper(useWrapping = false)
     public List<ScorePart> scoreParts;
+    
+    // Default Constructor:
+    public PartList() {
+		super();
+	}
 
-    public PartList(List<ScorePart> scoreParts) {
+	public PartList(List<ScorePart> scoreParts) {
         this.scoreParts = scoreParts;
     }
 

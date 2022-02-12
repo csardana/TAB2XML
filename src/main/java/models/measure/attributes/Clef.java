@@ -4,6 +4,11 @@ public class Clef {
     public String sign;
     public int line;
 
+    // Default Constructor:
+    public Clef() {
+		super();
+	}
+    
     public Clef(String sign, int line){
         this.sign = sign;
         this.line = line;

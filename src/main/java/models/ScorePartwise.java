@@ -24,8 +24,7 @@ public class ScorePartwise {
     @JacksonXmlProperty(localName = "movement-title")
     String movementTitle;
     Identification identification;
-
-
+    
     @JacksonXmlProperty(localName = "part-list")
     PartList partList;
 

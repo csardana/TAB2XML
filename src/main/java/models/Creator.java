@@ -9,8 +9,13 @@ public class Creator {
 
     @JacksonXmlText
     String name;
+    
+    // Default Constructor:
+    public Creator() {
+		super();
+	}
 
-    public Creator(String type, String name) {
+	public Creator(String type, String name) {
         this.type = type;
         this.name = name;
     }

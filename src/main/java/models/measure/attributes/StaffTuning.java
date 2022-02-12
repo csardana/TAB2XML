@@ -6,12 +6,16 @@ public class StaffTuning {
     @JacksonXmlProperty(isAttribute = true)
     public int line;
 
-
     @JacksonXmlProperty(localName = "tuning-step")
     public String tuningStep;
     @JacksonXmlProperty(localName = "tuning-octave")
     public int tuningOctave;
 
+    // Default Constructor:
+    public StaffTuning() {
+		super();
+	}
+    
     public StaffTuning(int line, String tuningStep, int tuningOctave) {
         this.line = line;
         this.tuningStep = tuningStep;

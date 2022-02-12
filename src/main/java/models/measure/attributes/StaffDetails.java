@@ -14,6 +14,11 @@ public class StaffDetails {
     @JacksonXmlElementWrapper(useWrapping = false)
     public List<StaffTuning> staffTuning;
 
+    // Default Constructor:
+    public StaffDetails() {
+		super();
+	}
+    
     public StaffDetails(int staffLines, List<StaffTuning> staffTuning) {
         this.staffLines = staffLines;
         this.staffTuning = staffTuning;

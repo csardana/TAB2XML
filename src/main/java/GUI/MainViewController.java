@@ -40,6 +40,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import utility.DeserializeMusicXML;
 import utility.Range;
 import utility.Settings;
 
@@ -308,6 +309,7 @@ public class MainViewController extends Application {
 	private void previewButtonHandle() throws IOException {
 		System.out.println("Preview Button Clicked!");
 		// converter.getMusicXML() returns the MusicXML output as a String
+		DeserializeMusicXML value = new DeserializeMusicXML(converter.getMusicXML());
 	}
 
 	public void refresh() {
