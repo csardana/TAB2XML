@@ -1,11 +1,14 @@
 package GUI;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Line2D;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -27,6 +30,8 @@ import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -39,6 +44,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Line;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -313,26 +319,48 @@ public class MainViewController extends Application {
 	private void previewButtonHandle() throws IOException {
 		System.out.println("Preview Button Clicked!");
 		
+//<<<<<<< HEAD
 		//int i = 0;
+//=======
+//		int i = 0;
+//>>>>>>> branch 'master' of https://github.com/csardana/TAB2XML
 		// converter.getMusicXML() returns the MusicXML output as a String
 		
 		Label secondLabel = new Label("Label");
-
+		Line line = new Line();
+		Line line2 = new Line();
+		Line line3 = new Line();
+		Line line4 = new Line();
+		line.setStartX(100);
+		line.setStartY(150);
+		line.setEndX(500);
+		line.setEndY(150);
+		
+		
+		line2.setStartX(100);
+		line2.setStartY(250);
+		line2.setEndX(500);
+		line2.setEndY(250);
 		StackPane secondaryLayout = new StackPane();
-		secondaryLayout.getChildren().add(secondLabel);
-
+		
+		secondaryLayout.getChildren().add(line);
+		
+		
 		Scene secondScene = new Scene(secondaryLayout, 230, 100);
 
 		// New window (Stage)
 		Stage newWindow = new Stage();
 		newWindow.setTitle("Sheet Music");
 		newWindow.setScene(secondScene);
-
+		
 		// Set position of second window, related to primary window.
 		newWindow.setX( 200);
 		newWindow.setY( 100);
-
+		
+		 
+        
 		newWindow.show();
+		
 //		chirag
 		
 		
@@ -340,8 +368,10 @@ public class MainViewController extends Application {
 		String xml = converter.getMusicXML();
 		ParseIntoSheetMusic parser= new ParseIntoSheetMusic(xml);
 		String[] songname = parser.parseMusicXML();
-		for (Note i :parser.getNotesOfSong()) {System.out.println(i.getPitch());}
+		int divisions = parser.divisions;
 		
+		for (Note i :parser.getNotesOfSong()) {System.out.println(i.getPitch()+i.getOctave()+i.getDuration()+i.getMeasure());}
+		System.out.println(parser.divisions);
 		
 		
 		
