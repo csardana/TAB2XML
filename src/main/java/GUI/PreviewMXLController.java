@@ -23,7 +23,7 @@ public class PreviewMXLController {
 		      line.setStartY(150.0); 
 		      line.setEndX(500.0); 
 		      line.setEndY(150.0); 
-		         
+		         //made some changes
 		      //Creating a Group 
 		      Group root = new Group(line); 
 		         
