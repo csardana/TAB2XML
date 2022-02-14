@@ -1,9 +1,7 @@
 package GUI;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.Font;
-import java.awt.LayoutManager;
+
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,21 +17,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
-import javax.swing.ScrollPaneConstants;
-import javax.swing.UIManager;
-import javax.swing.text.DefaultCaret;
 
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.model.StyleSpans;
 
+import SheetMusic.Note;
+import SheetMusic.ParseIntoSheetMusic;
 import converter.Converter;
 import converter.measure.TabMeasure;
 import javafx.application.Application;
@@ -95,6 +85,7 @@ public class MainViewController extends Application {
 		s.tsNum = Integer.parseInt(prefs.get("tsNum", "4"));
 		s.tsDen = Integer.parseInt(prefs.get("tsDen", "4"));
 		s.errorSensitivity = Integer.parseInt(prefs.get("errorSensitivity", "4"));
+		
 	}
 
 	@FXML 
@@ -132,6 +123,8 @@ public class MainViewController extends Application {
 		} catch (IOException e) {
 			Logger logger = Logger.getLogger(getClass().getName());
 			logger.log(Level.SEVERE, "Failed to create new Window.", e);
+			
+//			chirag
 		}
 	}
 
@@ -319,63 +312,43 @@ public class MainViewController extends Application {
 			logger.log(Level.SEVERE, "Failed to create new Window.", e);
 		}
 	}
-
+	private PreviewMXLController mus = new PreviewMXLController();
 	@FXML
 	private void previewButtonHandle() throws IOException {
 		System.out.println("Preview Button Clicked!");
-		JFrame frame = new JFrame("Preview Music");
-        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        try 
-        {
-           UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception e) {
-           e.printStackTrace();
-        }
-        JPanel panel = new JPanel();
-        panel.setLayout((LayoutManager) new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setOpaque(true);
-        JTextArea textArea = new JTextArea(15, 50);
-        textArea.setWrapStyleWord(true);
-        textArea.setEditable(false);
-        textArea.setFont(Font.getFont(Font.SANS_SERIF));
-        JScrollPane scroller = new JScrollPane(textArea);
-        scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        JPanel inputpanel = new JPanel();
-        inputpanel.setLayout(new FlowLayout());
-        JButton button = new JButton("Play Music");
-        DefaultCaret caret = (DefaultCaret) textArea.getCaret();
-        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-        panel.add(scroller);
-        
-        inputpanel.add(button);
-        panel.add(inputpanel);
-        frame.getContentPane().add(BorderLayout.CENTER, panel);
-        frame.pack();
-        frame.setLocationByPlatform(true);
-        frame.setVisible(true);
-        frame.setResizable(false);
-        
+		PreviewMXLController mus = new PreviewMXLController();
+		
 		
 		// converter.getMusicXML() returns the MusicXML output as a String
 		
-		Label secondLabel = new Label("Label");
+//		Label secondLabel = new Label("Label");
+//
+//		StackPane secondaryLayout = new StackPane();
+//		secondaryLayout.getChildren().add(secondLabel);
+//
+//		Scene secondScene = new Scene(secondaryLayout, 230, 100);
+//
+//		// New window (Stage)
+//		Stage newWindow = new Stage();
+//		newWindow.setTitle("Sheet Music");
+//		newWindow.setScene(secondScene);
+//
+//		// Set position of second window, related to primary window.
+//		newWindow.setX(200);
+//		newWindow.setY(100);
+//
+//		newWindow.show();
+//		chirag
+		
+		
 
-		StackPane secondaryLayout = new StackPane();
-		secondaryLayout.getChildren().add(secondLabel);
-
-		Scene secondScene = new Scene(secondaryLayout, 230, 100);
-
-		// New window (Stage)
-		Stage newWindow = new Stage();
-		newWindow.setTitle("Sheet Music");
-		newWindow.setScene(secondScene);
-
-		// Set position of second window, related to primary window.
-		newWindow.setX( 200);
-		newWindow.setY( 100);
-
-		newWindow.show();
+		String xml = converter.getMusicXML();
+		ParseIntoSheetMusic parser= new ParseIntoSheetMusic(xml);
+		String[] songname = parser.parseMusicXML();
+		for (Note i :parser.getNotesOfSong()) {System.out.println(i.getPitch());}
+		
+		
+		
 		
 	}
 
