@@ -320,12 +320,16 @@ public class MainViewController extends Application {
 		System.out.println("Preview Button Clicked!");
 		
 //<<<<<<< HEAD
-		//int i = 0;
+////<<<<<<< HEAD
+//		//int i = 0;
+////=======
+////		int i = 0;
+////>>>>>>> branch 'master' of https://github.com/csardana/TAB2XML
 //=======
-//		int i = 0;
+////		int i = 0;
 //>>>>>>> branch 'master' of https://github.com/csardana/TAB2XML
-		// converter.getMusicXML() returns the MusicXML output as a String
-		
+//		// converter.getMusicXML() returns the MusicXML output as a String
+//		
 		Label secondLabel = new Label("Label");
 		Line line = new Line();
 		Line line2 = new Line();
