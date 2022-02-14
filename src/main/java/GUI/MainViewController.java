@@ -1,5 +1,7 @@
 package GUI;
 
+
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -14,6 +16,7 @@ import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
+
 
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
@@ -82,6 +85,7 @@ public class MainViewController extends Application {
 		s.tsNum = Integer.parseInt(prefs.get("tsNum", "4"));
 		s.tsDen = Integer.parseInt(prefs.get("tsDen", "4"));
 		s.errorSensitivity = Integer.parseInt(prefs.get("errorSensitivity", "4"));
+		
 	}
 
 	@FXML 
@@ -308,32 +312,36 @@ public class MainViewController extends Application {
 			logger.log(Level.SEVERE, "Failed to create new Window.", e);
 		}
 	}
-
+	private PreviewMXLController mus = new PreviewMXLController();
 	@FXML
 	private void previewButtonHandle() throws IOException {
 		System.out.println("Preview Button Clicked!");
+		PreviewMXLController mus = new PreviewMXLController();
+		
+		
 		// converter.getMusicXML() returns the MusicXML output as a String
 		
-		Label secondLabel = new Label("Label");
-
-		StackPane secondaryLayout = new StackPane();
-		secondaryLayout.getChildren().add(secondLabel);
-
-		Scene secondScene = new Scene(secondaryLayout, 230, 100);
-
-		// New window (Stage)
-		Stage newWindow = new Stage();
-		newWindow.setTitle("Sheet Music");
-		newWindow.setScene(secondScene);
-
-		// Set position of second window, related to primary window.
-		newWindow.setX( 200);
-		newWindow.setY( 100);
-
-		newWindow.show();
+//		Label secondLabel = new Label("Label");
+//
+//		StackPane secondaryLayout = new StackPane();
+//		secondaryLayout.getChildren().add(secondLabel);
+//
+//		Scene secondScene = new Scene(secondaryLayout, 230, 100);
+//
+//		// New window (Stage)
+//		Stage newWindow = new Stage();
+//		newWindow.setTitle("Sheet Music");
+//		newWindow.setScene(secondScene);
+//
+//		// Set position of second window, related to primary window.
+//		newWindow.setX(200);
+//		newWindow.setY(100);
+//
+//		newWindow.show();
 //		chirag
 		
 		
+
 
 		String xml = converter.getMusicXML();
 		ParseIntoSheetMusic parser= new ParseIntoSheetMusic(xml);
