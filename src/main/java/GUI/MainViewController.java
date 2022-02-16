@@ -316,8 +316,8 @@ public class MainViewController extends Application {
 	@FXML
 	private void previewButtonHandle() throws IOException {
 		System.out.println("Preview Button Clicked!");
-		PreviewMXLController mus = new PreviewMXLController();
-		
+//		PreviewMXLController mus = new PreviewMXLController();
+	MyFrame new_Frame = new MyFrame();	
 		
 		// converter.getMusicXML() returns the MusicXML output as a String
 		
@@ -343,13 +343,13 @@ public class MainViewController extends Application {
 		
 
 
-		String xml = converter.getMusicXML();
-		ParseIntoSheetMusic parser= new ParseIntoSheetMusic(xml);
-		String[] songname = parser.parseMusicXML();
-		for (Note i :parser.getNotesOfSong()) {System.out.println(i.getPitch());}
-		
-		
-		
+//		String xml = converter.getMusicXML();
+//		ParseIntoSheetMusic parser= new ParseIntoSheetMusic(xml);
+//		String[] songname = parser.parseMusicXML();
+//		for (Note i :parser.getNotesOfSong()) {System.out.println(i.getPitch());}
+//		
+//		
+//		
 		
 	}
 
