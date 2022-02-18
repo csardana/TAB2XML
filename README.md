@@ -1,7 +1,7 @@
 # TAB2XML
-<p
-   <h1>EECS 2311 Software Design Project</h1>
-   </p>
+# EECS 2311 Software Design Project
+# Run Instructions
+   
 
 [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
 
