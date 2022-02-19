@@ -1,7 +1,7 @@
 # EECS 2311 Software Design Project (Winter 2022)
 ## TAB2XML
 ## Setting up Eclipse
-1. Download [eclipse](https://www.eclipse.org/downloads/) and choose the lattest version of Eclipse. 
+1. Download [Eclipse](https://www.eclipse.org/downloads/) and choose the lattest version of Eclipse. 
 2. 
 ### Run Instructions
 
