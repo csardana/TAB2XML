@@ -275,7 +275,8 @@ public class Score extends ScoreComponent {
         return new PartList(scoreParts);
     }
     
-	public ScorePartwise getModel() throws TXMLException {
+	public ScorePartwise getModel() {
+		// Erased 'throws TXMLException' in the definition.
 	
 	    List<models.measure.Measure> measures = new ArrayList<>();
 	    for (TabMeasure tabMeasure : this.tabMeasureList) {

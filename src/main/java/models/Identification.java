@@ -1,5 +1,8 @@
 package models;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+@JsonDeserialize(as = Identification.class)
 public class Identification {
     Creator creator;
 

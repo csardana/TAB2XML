@@ -20,6 +20,7 @@ import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.model.StyleSpans;
 
 import converter.Converter;
+import converter.Instrument;
 import converter.measure.TabMeasure;
 import javafx.application.Application;
 import javafx.concurrent.Task;
@@ -40,6 +41,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import models.content.ContentManager;
+import models.content.GuitarContent;
 import utility.Range;
 import utility.Settings;
 
@@ -308,6 +311,19 @@ public class MainViewController extends Application {
 	private void previewButtonHandle() throws IOException {
 		System.out.println("Preview Button Clicked!");
 		// converter.getMusicXML() returns the MusicXML output as a String
+		ContentManager musicContent = null;
+		if(Settings.getInstance().getInstrument() == Instrument.GUITAR) {
+			musicContent = new GuitarContent(converter.getScore().getModel());
+			((GuitarContent) musicContent).getCrucialNoteData(1);
+		} else if(Settings.getInstance().getInstrument() == Instrument.DRUMS) {
+			// Implement later.
+		} else { // BASS
+			// Implement later.
+		}
+		
+		musicContent.getMeasureNotePitch(1);
+
+		//musicContent.readDevMapping();
 	}
 
 	public void refresh() {
