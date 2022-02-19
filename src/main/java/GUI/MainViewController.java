@@ -317,7 +317,7 @@ public class MainViewController extends Application {
 	private void previewButtonHandle() throws IOException {
 		System.out.println("Preview Button Clicked!");
 //		PreviewMXLController mus = new PreviewMXLController();
-	MyFrame new_Frame = new MyFrame();	
+		MyFrame new_Frame = new MyFrame();	
 		
 		// converter.getMusicXML() returns the MusicXML output as a String
 		
