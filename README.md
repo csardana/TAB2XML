@@ -1,9 +1,9 @@
-# EECS 2311 Software Design Project (Winter 2022)
-## TAB2XML
-## Setting up Eclipse
+# TAB2XML EECS 2311 Software Design Project (Winter 2022)
+## Run Instructions
 1. Download [Eclipse](https://www.eclipse.org/downloads/) and choose the lattest version of Eclipse. 
-2. 
-### Run Instructions
+2. After setting Eclipse, go to files -> import -> Git -> Projects from Git -> clone URL
+3. Now copy this URL https://github.com/csardana/TAB2XML and paste it in the URl section of the prompt in Eclipse then click finish 
+4. 
 
    
 
