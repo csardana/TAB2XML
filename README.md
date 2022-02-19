@@ -1,7 +1,10 @@
-# EECS 2311 Software Design Project
+# EECS 2311 Software Design Project (Winter 2022)
 ## TAB2XML
+## Setting up Eclipse
+1. Download [eclipse](https://www.eclipse.org/downloads/) and choose the lattest version of Eclipse. 
+2. 
 ### Run Instructions
-hello world
+
    
 
 [![CC BY-SA 4.0][cc-by-sa-shield]][cc-by-sa]
