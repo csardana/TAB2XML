@@ -16,7 +16,7 @@ public class GuitarContent extends ContentManager {
 		
 		// With respect to the examples provided for the system,
 		// the staff tunings are only mentioned in the first measure.
-		// Note: Line 1 starts at the bottom of the staff.
+		// Note: Line 1 starts at the top of the staff.
 		
 		// staffTunings[line#][pos.0 = step, pos.1 = octave]
 		// Might have to be changed later if custom tuning exists.
@@ -30,7 +30,7 @@ public class GuitarContent extends ContentManager {
 			// For some note:
 			notationOutput[i][0] = guitarNotes.get(i).getNotations().getTechnical().getString();
 			notationOutput[i][1] = guitarNotes.get(i).getNotations().getTechnical().getFret();
-			System.out.println(String.format("Line: %d, Fret: %d", notationOutput[i][0], notationOutput[i][1]));
+			//System.out.println(String.format("Line: %d, Fret: %d", notationOutput[i][0], notationOutput[i][1]));
 		}
 		return notationOutput;
 	}

@@ -39,7 +39,7 @@ public class ContentManager {
 						this.sp.getParts().get(i).getMeasures().get(j));
 			}
 			// Attach the corresponding Measure map to Part 'i':
-			partAndMeasureMap.put(i, measureMap);
+			partAndMeasureMap.put(i+1, measureMap);
 		}
 	}
 	

@@ -26,6 +26,9 @@ import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -35,8 +38,19 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.IndexRange;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -310,7 +324,7 @@ public class MainViewController extends Application {
 	@FXML
 	private void previewButtonHandle() throws IOException {
 		System.out.println("Preview Button Clicked!");
-		// converter.getMusicXML() returns the MusicXML output as a String
+		
 		ContentManager musicContent = null;
 		if(Settings.getInstance().getInstrument() == Instrument.GUITAR) {
 			musicContent = new GuitarContent(converter.getScore().getModel());
@@ -322,8 +336,155 @@ public class MainViewController extends Application {
 		}
 		
 		musicContent.getMeasureNotePitch(1);
-
-		//musicContent.readDevMapping();
+		
+		try {
+			
+			// See if you can load an FXML several times to implement several staffs.
+			
+			Stage stage = new Stage();
+			//Group root = new Group(); // A basic root node that is a "grouping" of nodes
+			AnchorPane root = new AnchorPane();
+			root.setPrefSize(600, 400);
+			
+			//FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/Preview.fxml"));
+			//Parent root = loader.load();
+			int[] linePositions = {40, 60, 80, 100, 120, 140};
+			
+			ScrollPane scroll = new ScrollPane();
+			scroll.setPrefSize(550, 350);
+			scroll.setPadding(new Insets(0,0,0,0));
+			AnchorPane.setLeftAnchor(scroll, 25.0);
+			AnchorPane.setTopAnchor(scroll, 25.0);
+			
+			Pane pane = new Pane();
+			
+			// Staff lines:
+			Line bar1 = new Line();
+			bar1.setStroke(Color.BLACK);
+			bar1.setLayoutX(25);
+			bar1.setStartY(-50);
+			bar1.setEndY(50);
+			bar1.setLayoutY(90);
+			bar1.setStrokeWidth(3);
+			
+	        Line line1 = new Line();
+			line1.setStroke(Color.BLACK);
+			line1.setLayoutX(275);
+			line1.setStartX(-250);
+			line1.setEndX(250);
+			line1.setLayoutY(40);
+			
+			Line line2 = new Line();
+			line2.setStroke(Color.BLACK);
+			line2.setLayoutX(275);
+			line2.setStartX(-250);
+			line2.setEndX(250);
+			line2.setLayoutY(60);
+			
+			Line line3 = new Line();
+			line3.setStroke(Color.BLACK);
+			line3.setLayoutX(275);
+			line3.setStartX(-250);
+			line3.setEndX(250);
+			line3.setLayoutY(80);
+			
+			Line line4 = new Line();
+			line4.setStroke(Color.BLACK);
+			line4.setLayoutX(275);
+			line4.setStartX(-250);
+			line4.setEndX(250);
+			line4.setLayoutY(100);
+			
+			Line line5 = new Line();
+			line5.setStroke(Color.BLACK);
+			line5.setLayoutX(275);
+			line5.setStartX(-250);
+			line5.setEndX(250);
+			line5.setLayoutY(120);
+			
+			Line line6 = new Line();
+			line6.setStroke(Color.BLACK);
+			line6.setLayoutX(275);
+			line6.setStartX(-250);
+			line6.setEndX(250);
+			line6.setLayoutY(140);
+			
+			// TAB clef:
+			Text t = new Text();
+			t.setText("T");
+			t.setFont(Font.font("Arial", 30));
+			t.setLayoutX(30);
+			t.setLayoutY(70);
+			Text a = new Text();
+			a.setText("A");
+			a.setFont(Font.font("Arial", 30));
+			a.setLayoutX(30);
+			a.setLayoutY(100);
+			Text b = new Text();
+			b.setText("B");
+			b.setFont(Font.font("Arial", 30));
+			b.setLayoutX(30);
+			b.setLayoutY(130);
+			
+			// Time Signature of Measure:
+			int[] timeSig = musicContent.getMeasureTimeSig(1);
+			Text tsnum = new Text();
+			tsnum.setText(timeSig[0] + "");
+			tsnum.setFont(Font.font("Arial", 30));
+			tsnum.setLayoutX(60);
+			tsnum.setLayoutY(80);
+			Text tsden = new Text();
+			tsden.setText(timeSig[1] + "");
+			tsden.setFont(Font.font("Arial", 30));
+			tsden.setLayoutX(60);
+			tsden.setLayoutY(120);
+			
+			pane.setPrefSize(550, 180);
+			pane.setStyle("-fx-background-color: #ffffff;" + "-fx-border-color: #000000");
+			pane.getChildren().add(bar1);
+			pane.getChildren().add(line1);
+			pane.getChildren().add(line2);
+			pane.getChildren().add(line3);
+			pane.getChildren().add(line4);
+			pane.getChildren().add(line5);
+			pane.getChildren().add(line6);
+			pane.getChildren().add(t);
+			pane.getChildren().add(a);
+			pane.getChildren().add(b);
+			pane.getChildren().add(tsnum);
+			pane.getChildren().add(tsden);
+			
+			double counter = tsden.getLayoutX() + 40; // After timeSig x position + 40 units
+			for(int i = 0; i < ((GuitarContent) musicContent).getCrucialNoteData(1).length; i++) {
+				// A lot of controls are needed to determine chords, bar lines, etc.
+				// Stackpane is needed here to achieve a background color
+				Text digit = new Text();
+				digit.setText(((GuitarContent) musicContent).getCrucialNoteData(1)[i][1] + "");
+				digit.setLayoutY(linePositions[((GuitarContent) musicContent).getCrucialNoteData(1)[i][0] - 1] + 5);
+				digit.setLayoutX(counter);
+				digit.setFont(Font.font("Arial",15));
+				digit.setStyle("-fx-highlight-fill: #000000");
+				pane.getChildren().add(digit);
+				counter += 30;
+			}
+			
+			scroll.setContent(pane);
+			root.getChildren().add(scroll);
+			
+			Scene scene = new Scene(root);
+			scene.setFill(Color.WHITE);
+			
+			stage.setTitle("Preview Music");
+			stage.setWidth(615);
+			stage.setHeight(400);
+			stage.setResizable(false);
+			
+			stage.setScene(scene);
+			stage.show();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void refresh() {
