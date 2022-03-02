@@ -1,5 +1,6 @@
 package GUI;
 
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,9 +16,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
 
+import javax.sound.midi.InvalidMidiDataException;
+import javax.sound.midi.MidiUnavailableException;
+import javax.sound.midi.Sequence;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.model.StyleSpans;
+import org.jfugue.integration.MusicXmlParser;
+import org.jfugue.player.ManagedPlayer;
+import org.jfugue.player.Player;
+import org.staccato.StaccatoParserListener;
 
 import converter.Converter;
 import converter.Instrument;
@@ -43,7 +53,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
@@ -51,12 +63,14 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import models.content.ContentManager;
 import models.content.GuitarContent;
+import nu.xom.ParsingException;
 import utility.Range;
 import utility.Settings;
 
@@ -334,15 +348,17 @@ public class MainViewController extends Application {
 		} else { // BASS
 			// Implement later.
 		}
-		
+
 		musicContent.getMeasureNotePitch(1);
 		
 		try {
+	        
 			
 			// See if you can load an FXML several times to implement several staffs.
-			
+		
 			Stage stage = new Stage();
 			//Group root = new Group(); // A basic root node that is a "grouping" of nodes
+			
 			AnchorPane root = new AnchorPane();
 			root.setPrefSize(600, 400);
 			
@@ -439,6 +455,65 @@ public class MainViewController extends Application {
 			tsden.setLayoutX(60);
 			tsden.setLayoutY(120);
 			
+			StaccatoParserListener listener = new StaccatoParserListener();
+			MusicXmlParser parser = new MusicXmlParser();
+	        parser.addParserListener(listener);
+	        Converter conv = new Converter(this);
+	        conv.update();
+	        parser.parse(conv.getMusicXML());
+	        Player player = new Player();
+	        org.jfugue.pattern.Pattern musicXMLPattern = listener.getPattern().setTempo(300).setInstrument("guitar");
+	        Sequence mySequence = player.getSequence(musicXMLPattern);
+	        ManagedPlayer OurPlayer = player.getManagedPlayer();
+
+			Button button = new Button("Play Music");
+			button.setOnAction(value ->  {
+				
+			
+					
+			        try {
+						OurPlayer.start(mySequence);
+					} catch (InvalidMidiDataException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (MidiUnavailableException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
+
+		        });
+			
+			Button button1 = new Button("Pause Music");
+			button1.setOnAction(value ->  {
+				
+				System.out.print("paused");
+
+		        OurPlayer.pause();
+
+
+		        });
+			
+//			Button button2 = new Button("Reset Music");
+//			button.setOnAction(value ->  {
+//				
+//			
+//					
+//			        OurPlayer.reset();
+//
+//
+//		        });
+
+		    HBox hbox = new HBox();
+
+		    HBox.setHgrow(button, Priority.ALWAYS);
+		    HBox.setHgrow(button1, Priority.ALWAYS);
+//		    HBox.setHgrow(button2, Priority.ALWAYS);
+		    hbox.getChildren().add(button);
+		    hbox.getChildren().add(button1);
+//		    hbox.getChildren().add(button2);
+		    
+			
 			pane.setPrefSize(550, 180);
 			pane.setStyle("-fx-background-color: #ffffff;" + "-fx-border-color: #000000");
 			pane.getChildren().add(bar1);
@@ -453,6 +528,9 @@ public class MainViewController extends Application {
 			pane.getChildren().add(b);
 			pane.getChildren().add(tsnum);
 			pane.getChildren().add(tsden);
+//			pane.getChildren().add(button);
+			pane.getChildren().add(hbox);
+			
 			
 			double counter = tsden.getLayoutX() + 40; // After timeSig x position + 40 units
 			for(int i = 0; i < ((GuitarContent) musicContent).getCrucialNoteData(1).length; i++) {
@@ -482,9 +560,17 @@ public class MainViewController extends Application {
 			stage.setScene(scene);
 			stage.show();
 			
+			stage.setOnCloseRequest(event -> {
+				OurPlayer.finish();
+			    // Save file
+			});
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		// converter.getMusicXML() returns the MusicXML output as a String
+		
+	
 	}
 
 	public void refresh() {
