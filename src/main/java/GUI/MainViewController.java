@@ -63,6 +63,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -567,6 +568,9 @@ public class MainViewController extends Application {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		// converter.getMusicXML() returns the MusicXML output as a String
+		
+	
 	}
 
 	public void refresh() {

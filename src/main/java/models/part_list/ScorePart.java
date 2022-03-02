@@ -67,3 +67,5 @@ public class ScorePart {
         this.midiInstruments = midiInstruments;
     }
 }
+
+//added a comment
