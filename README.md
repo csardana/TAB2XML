@@ -1,7 +1,7 @@
 # TAB2XML EECS 2311 Software Design Project (Winter 2022)
 [How to Import project to eclipse via Github](https://github.com/csardana/TAB2XML#How-to-Import-project-to-eclipse-via-Github) </br>
 [Setting up Gradle and Running the Application](https://github.com/csardana/TAB2XML#Setting-up-Gradle-and-Running-the-Application)</br>
-[How create a Personal Access Token](https://github.com/csardana/TAB2XML#How-create-a-Personal-Access-Token)
+[How to create a Personal Access Token](https://github.com/csardana/TAB2XML#How-to-create-a-Personal-Access-Token)
 
 
 ## How to Import project to eclipse via Github
@@ -19,7 +19,7 @@
 
 5.Now under the Location box, in the URI textbox copy paste our Github reposirtory which would have all source code: https://github.com/csardana/TAB2XML. For the Autentication box, in the textfield for user: enter your github username and for the password: enter the Personal Access Token.
 Now when this is all done, and next is clicked, you will select next again in the next window and then click finish when prompted. </br>
-Note: If you don't have a Personal Access Token, Please look at our section "How to create a Personal Access Token" which will help you procced further in the step of this installation. 
+Note: If you don't have a Personal Access Token, Please look at our section [How to create a Personal Access Token](https://github.com/csardana/TAB2XML#How-create-to-a-Personal-Access-Token) which will help you procced further in the step of this installation. 
 ![](Documentation/Pictures/um5.png)
 
 ### Setting up Gradle and Running the Application
@@ -39,7 +39,7 @@ Note: Double click "run"
 5. Finally the application will open up and the following will open waiting for your input. 
 ![](Documentation/Pictures/um11.png)
 
-## How create a Personal Access Token
+## How to create a Personal Access Token
 This Personal Access Token will be used when importing our project into eclipse via Github. This portion will take you step by step in creating the Personal Access Token. 
 1. Go to your github settings </br>
 ![](Documentation/Pictures/generate_token1.png)
