@@ -1,23 +1,8 @@
 # TAB2XML EECS 2311 Software Design Project (Winter 2022)
-[How to Import project to eclipse via Github](https://github.com/csardana/TAB2XML#How-to-Import-project-to-eclipse-via-Github)
-## How create a Personal Access Token
-This Personal Access Token will be used when importing our project into eclipse via Github. This portion will take you step by step in creating the Personal Access Token. 
-1. Go to your github settings </br>
-![](Documentation/Pictures/generate_token1.png)
+[How to Import project to eclipse via Github](https://github.com/csardana/TAB2XML#How-to-Import-project-to-eclipse-via-Github) </br>
+[How create a Personal Access Token](https://github.com/csardana/TAB2XML#How-create-a-Personal-Access-Token)</br>
+[Setting up Gradle and Running the Application](https://github.com/csardana/TAB2XML#Setting-up-Gradle-and-Running-the-Application)
 
-2. Scroll down and select "Developer settings" in the side menu bar.</br>
-![](Documentation/Pictures/generate_token2.png)
-
-3. Now from these three options select "Personal access tokens"</br>
-![](Documentation/Pictures/generate_token3.png)
-
-4. To generate a new token, select "Generate new token" </br>
-![](Documentation/Pictures/generate_token4.png)
-
-5. Now it will prompt you to enter your password for verification, after doing that, select a date for how long you want this token to work for and make a note for what this token is for. Then scroll all the way at the bottom to click generate. </br>
-Note: When the token is generated, copy and paste it somewhere (e.g notes or notpad) so you can enter when importing a project from github. 
-![](Documentation/Pictures/generate_token5.png)
-Note: You will see many other options, but we will not select any of those and just select "Generate key" at the bottom of the page!!
 ## How to Import project to eclipse via Github
 1. Open eclipse and create a new workspace 
 ![](Documentation/Pictures/um1.png)
@@ -53,7 +38,24 @@ Note: Double click "run"
 5. Finally the application will open up and the following will open waiting for your input. 
 ![](Documentation/Pictures/um11.png)
 
+## How create a Personal Access Token
+This Personal Access Token will be used when importing our project into eclipse via Github. This portion will take you step by step in creating the Personal Access Token. 
+1. Go to your github settings </br>
+![](Documentation/Pictures/generate_token1.png)
 
+2. Scroll down and select "Developer settings" in the side menu bar.</br>
+![](Documentation/Pictures/generate_token2.png)
+
+3. Now from these three options select "Personal access tokens"</br>
+![](Documentation/Pictures/generate_token3.png)
+
+4. To generate a new token, select "Generate new token" </br>
+![](Documentation/Pictures/generate_token4.png)
+
+5. Now it will prompt you to enter your password for verification, after doing that, select a date for how long you want this token to work for and make a note for what this token is for. Then scroll all the way at the bottom to click generate. </br>
+Note: When the token is generated, copy and paste it somewhere (e.g notes or notpad) so you can enter when importing a project from github. 
+![](Documentation/Pictures/generate_token5.png)
+Note: You will see many other options, but we will not select any of those and just select "Generate key" at the bottom of the page!!
 
 
    
