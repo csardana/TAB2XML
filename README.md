@@ -1,5 +1,5 @@
 # TAB2XML EECS 2311 Software Design Project (Winter 2022)
-[How to Import project to eclipse via Github](https://github.com/csardana/TAB2XML#How-to-Import-into-eclipse)
+[How to Import project to eclipse via Github](https://github.com/csardana/TAB2XML#How-to-Import-project-to-eclipse-via-Github)
 ## How create a Personal Access Token
 This Personal Access Token will be used when importing our project into eclipse via Github. This portion will take you step by step in creating the Personal Access Token. 
 1. Go to your github settings </br>
