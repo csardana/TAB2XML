@@ -14,7 +14,7 @@ This Personal Access Token will be used when importing our project into eclipse 
 4. To generate a new token, select "Generate new token" </br>
 ![](Documentation/Pictures/generate_token4.png)
 
-5. Now it will prompt you to enter your password for verification, after doing that, select a date for how long you want this token to work for and make a note for what this token is for. Then scroll all the way at the bottom to click generate. 
+5. Now it will prompt you to enter your password for verification, after doing that, select a date for how long you want this token to work for and make a note for what this token is for. Then scroll all the way at the bottom to click generate. </br>
 Note: When the token is generated, copy and paste it somewhere (e.g notes or notpad) so you can enter when importing a project from github. 
 ![](Documentation/Pictures/generate_token5.png)
 Note: You will see many other options, but we will not select any of those and just select "Generate key" at the bottom of the page!!
@@ -32,11 +32,26 @@ Note: You will see many other options, but we will not select any of those and j
 ![](Documentation/Pictures/um4.png)
 
 5.Now under the Location box, in the URI textbox copy paste our Github reposirtory which would have all source code: https://github.com/csardana/TAB2XML. For the Autentication box, in the textfield for user: enter your github username and for the password: enter the Personal Access Token.
-Now when this is all done, and next is clicked, you will select next again in the next window and then click finish when prompted. 
+Now when this is all done, and next is clicked, you will select next again in the next window and then click finish when prompted. </br>
 Note: If you don't have a Personal Access Token, Please look at our section "How to create a Personal Access Token" which will help you procced further in the step of this installation. 
 ![](Documentation/Pictures/um5.png)
 
 ### Setting up Gradle and Running the Application
+1. Open Preferences -> Select Gradle -> Specific Gradle version -> Apply and close. 
+![](Documentation/Pictures/um7.png)
+
+2. To get gradle tasks so the application can run, "Run -> Show View -> Other" 
+![](Documentation/Pictures/um8.png)
+
+3. Now in the show view select "Gradle -> Gradle Tasks" 
+![](Documentation/Pictures/um9.png)
+
+4. After doing these steps, there would be a window named Gradle tasks and underneath that the project name "Project_name -> application -> run" </br>
+Note: Double click "run"
+![](Documentation/Pictures/um10.png)
+
+5. Finally the application will open up and the following will open waiting for your input. 
+![](Documentation/Pictures/um11.png)
 
 
 
