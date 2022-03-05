@@ -1,4 +1,5 @@
-# TAB2XML EECS 2311 Software Design Project (Winter 2022)
+# TAB2XML EECS 2311 Software Design Project </br>
+(Winter 2022)
 [How to Import project to eclipse via Github](https://github.com/csardana/TAB2XML#How-to-Import-project-to-eclipse-via-Github) </br>
 [Setting up Gradle and Running the Application](https://github.com/csardana/TAB2XML#Setting-up-Gradle-and-Running-the-Application)</br>
 [How to create a Personal Access Token](https://github.com/csardana/TAB2XML#How-to-create-a-Personal-Access-Token)
