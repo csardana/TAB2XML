@@ -30,6 +30,12 @@ public class GuitarContent extends ContentManager {
 			// For some note:
 			notationOutput[i][0] = guitarNotes.get(i).getNotations().getTechnical().getString();
 			notationOutput[i][1] = guitarNotes.get(i).getNotations().getTechnical().getFret();
+			try {
+				System.out.println( guitarNotes.get(i).getChord());
+			} catch (Exception e) {
+				
+			}
+			
 			//System.out.println(String.format("Line: %d, Fret: %d", notationOutput[i][0], notationOutput[i][1]));
 		}
 		return notationOutput;
