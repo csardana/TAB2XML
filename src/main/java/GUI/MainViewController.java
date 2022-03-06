@@ -454,7 +454,7 @@ public class MainViewController extends Application {
 			tsden.setFont(Font.font("Arial", 30));
 			tsden.setLayoutX(60);
 			tsden.setLayoutY(120);
-			
+			String check = "";
 			StaccatoParserListener listener = new StaccatoParserListener();
 			MusicXmlParser parser = new MusicXmlParser();
 	        parser.addParserListener(listener);
@@ -462,7 +462,18 @@ public class MainViewController extends Application {
 	        conv.update();
 	        parser.parse(conv.getMusicXML());
 	        Player player = new Player();
-	        org.jfugue.pattern.Pattern musicXMLPattern = listener.getPattern().setTempo(300).setInstrument("guitar");
+	        if(Settings.getInstance().getInstrument() == Instrument.GUITAR) {
+				check = "guitar";
+				((GuitarContent) musicContent).getCrucialNoteData(1);
+			} else if(Settings.getInstance().getInstrument() == Instrument.DRUMS) {
+				// Implement later.
+				check = "BASS_DRUM";
+			}
+			else if(Settings.getInstance().getInstrument() == Instrument.BASS) {
+				// Implement later.
+				check = "Acoustic_Bass";
+			}
+	        org.jfugue.pattern.Pattern musicXMLPattern = listener.getPattern().setTempo(300).setInstrument(check);
 	        Sequence mySequence = player.getSequence(musicXMLPattern);
 	        ManagedPlayer OurPlayer = player.getManagedPlayer();
 
