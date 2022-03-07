@@ -3,6 +3,8 @@
 [How to Import project to eclipse via Github](https://github.com/csardana/TAB2XML#How-to-Import-project-to-eclipse-via-Github) </br>
 [Setting up Gradle and Running the Application](https://github.com/csardana/TAB2XML#Setting-up-Gradle-and-Running-the-Application)</br>
 [How to create a Personal Access Token](https://github.com/csardana/TAB2XML#How-to-create-a-Personal-Access-Token)
+## Documentations
+[User Manual](https://github.com/csardana/TAB2XML/blob/master/User%20Manual.pdf) ||
 
 
 ## How to Import project to eclipse via Github
@@ -73,5 +75,4 @@ This work is licensed under a
 [cc-by-sa-image]: https://licensebuttons.net/l/by-sa/4.0/88x31.png
 [cc-by-sa-shield]: https://img.shields.io/badge/License-CC%20BY--SA%204.0-lightgrey.svg
 
-## Documentation
-[User Manual](https://github.com/csardana/TAB2XML/blob/master/User%20Manual.pdf) ||
+
