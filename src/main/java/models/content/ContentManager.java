@@ -44,8 +44,8 @@ public class ContentManager {
 	}
 	
 	// Get the time signature for a specified measure:
-	public int[] getMeasureTimeSig(int measureKey) {
-		Attributes measureAttributes = partAndMeasureMap.get(1).get(measureKey).getAttributes();
+	public int[] getMeasureTimeSig(int partKey, int measureKey) throws NullPointerException {
+		Attributes measureAttributes = partAndMeasureMap.get(partKey).get(measureKey).getAttributes();
 		int[] timeSig = new int[2];
 		try {
 			timeSig[0] = measureAttributes.getTime().getBeats();
@@ -65,9 +65,13 @@ public class ContentManager {
 		for(int i = 0; i < notes.size(); i++) {
 			pitchOutput[i][0] = notes.get(i).getPitch().getStep();
 			pitchOutput[i][1] = notes.get(i).getPitch().getOctave() + "";
-			System.out.println(String.format("Step: %s, Octave: %s", pitchOutput[i][0], pitchOutput[i][1]));
+			// System.out.println(String.format("Step: %s, Octave: %s", pitchOutput[i][0], pitchOutput[i][1]));
 		}
 		return pitchOutput;
+	}
+	
+	public Map<Integer, Map<Integer, Measure>> getContentMap() {
+		return this.partAndMeasureMap;
 	}
 	
 	// For some Measure in a Measure map:
