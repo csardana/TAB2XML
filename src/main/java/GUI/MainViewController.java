@@ -1,14 +1,11 @@
 package GUI;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.geom.Line2D;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.time.Duration;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -22,16 +19,13 @@ import org.fxmisc.richtext.CodeArea;
 import org.fxmisc.richtext.LineNumberFactory;
 import org.fxmisc.richtext.model.StyleSpans;
 
-import SheetMusic.Note;
-import SheetMusic.ParseIntoSheetMusic;
 import converter.Converter;
+import converter.Instrument;
 import converter.measure.TabMeasure;
 import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -43,12 +37,12 @@ import javafx.scene.control.IndexRange;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Line;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import models.content.ContentManager;
+import models.content.GuitarContent;
 import utility.Range;
 import utility.Settings;
 
@@ -316,8 +310,30 @@ public class MainViewController extends Application {
 	}
 
 	@FXML
-	private void previewButtonHandle() throws IOException {
+	private void previewButtonHandle() {
+		System.out.println("Preview Button Clicked!");
 		
+		ContentManager musicContent = null;
+		if(Settings.getInstance().getInstrument() == Instrument.GUITAR) {
+			musicContent = new GuitarContent(converter.getScore().getModel());
+			//((GuitarContent) musicContent).getCrucialNoteData(2);
+		} else if(Settings.getInstance().getInstrument() == Instrument.DRUMS) {
+			// Implement later.
+		} else { // BASS
+			// Implement later.
+		}
+		
+		// JavaFX portion:
+		Parent root;
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/Preview.fxml"));
+			root = loader.load();
+			PreviewController controller = loader.getController();
+			controller.setContentManager(this, musicContent);
+			convertWindow = this.openNewWindow(root, "Preview Sheet Music");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void refresh() {
