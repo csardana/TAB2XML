@@ -4,9 +4,9 @@
 [Setting up Gradle and Running the Application](https://github.com/csardana/TAB2XML#Setting-up-Gradle-and-Running-the-Application)</br>
 [How to create a Personal Access Token](https://github.com/csardana/TAB2XML#How-to-create-a-Personal-Access-Token)
 ## Documentations
-[Requirments Document]((Documentation/)
-[User Manual](Documentation/User Manual.pdf) 
-[Testing Document]((Documentation/Testing_Document.pdf) 
+[Requirments Document](Documentation/Requirments-.pdf)</br>
+[User Manual](Documentation/User-Manual.pdf)</br> 
+[Testing Document](Documentation/Testing_Document.pdf) 
 
 
 ## How to Import project to eclipse via Github
