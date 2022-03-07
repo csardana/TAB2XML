@@ -37,8 +37,14 @@
    <bottom>
       <AnchorPane prefHeight="100.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_RIGHT" layoutX="586.0" prefHeight="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="0.0">
+            <HBox alignment="CENTER_RIGHT" layoutX="586.0" prefHeight="100.0" spacing="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="0.0">
                <children>
+                  <HBox alignment="CENTER" prefHeight="100.0" spacing="5.0">
+                     <children>
+                        <Button fx:id="playMusicSheetButton" mnemonicParsing="false" onAction="#playMusicSheetButtonHandle" text="Play" />
+                        <Button fx:id="pauseMusicSheetButton" mnemonicParsing="false" onAction="#pauseMusicSheetButtonHandle" text="Pause" />
+                     </children>
+                  </HBox>
                   <Button fx:id="saveMusicSheetButton" mnemonicParsing="false" onAction="#saveMusicSheetButtonHandle" text="Save Music Sheet" />
                </children>
             </HBox>
@@ -46,17 +52,13 @@
                <children>
                   <Label prefHeight="25.6" text="Go To Measure" textFill="#ffffffbf" />
                   <TextField prefWidth="48.0" />
-                  <Button mnemonicParsing="false" text="Go" />
+                  <Button fx:id="goToMeasureButton" mnemonicParsing="false" onAction="#goToMeasureButtonHandle" text="Go" />
                </children>
             </HBox>
          </children>
       </AnchorPane>
    </bottom>
    <top>
-      <AnchorPane prefHeight="100.0" prefWidth="800.0" BorderPane.alignment="CENTER">
-         <children>
-            <HBox prefHeight="100.0" prefWidth="200.0" AnchorPane.leftAnchor="300.0" AnchorPane.rightAnchor="300.0" />
-         </children>
-      </AnchorPane>
+      <AnchorPane prefHeight="20.0" BorderPane.alignment="CENTER" />
    </top>
 </BorderPane>

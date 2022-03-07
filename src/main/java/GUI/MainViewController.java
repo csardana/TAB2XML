@@ -1,5 +1,6 @@
 package GUI;
 
+import java.io.Closeable;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -26,9 +27,6 @@ import javafx.application.Application;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -38,19 +36,8 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.IndexRange;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextAlignment;
 import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -322,7 +309,7 @@ public class MainViewController extends Application {
 	}
 
 	@FXML
-	private void previewButtonHandle() throws IOException {
+	private void previewButtonHandle() {
 		System.out.println("Preview Button Clicked!");
 		
 		ContentManager musicContent = null;
@@ -335,28 +322,14 @@ public class MainViewController extends Application {
 			// Implement later.
 		}
 		
-		//musicContent.getMeasureNotePitch(1);
-		
+		// JavaFX portion:
 		Parent root;
 		try {
-			Stage stage = new Stage();
-			
 			FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("GUI/Preview.fxml"));
 			root = loader.load();
 			PreviewController controller = loader.getController();
-			controller.setContentManager(musicContent);
-			//System.out.println("Yes");
-			//controller.buildPane();
-
-			Scene scene = new Scene(root);
-
-			stage.setTitle("Preview Sheet Music");
-			stage.setWidth(820);
-			stage.setHeight(450);
-			stage.setResizable(false);
-			stage.setScene(scene);
-			stage.show();
-			
+			controller.setContentManager(this, musicContent);
+			convertWindow = this.openNewWindow(root, "Preview Sheet Music");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
