@@ -317,67 +317,6 @@ public class MainViewController extends Application {
 
 	@FXML
 	private void previewButtonHandle() throws IOException {
-		System.out.println("Preview Button Clicked!");
-		
-//<<<<<<< HEAD
-////<<<<<<< HEAD
-//		//int i = 0;
-////=======
-////		int i = 0;
-////>>>>>>> branch 'master' of https://github.com/csardana/TAB2XML
-//=======
-////		int i = 0;
-//>>>>>>> branch 'master' of https://github.com/csardana/TAB2XML
-//		// converter.getMusicXML() returns the MusicXML output as a String
-//		
-		Label secondLabel = new Label("Label");
-		Line line = new Line();
-		Line line2 = new Line();
-		Line line3 = new Line();
-		Line line4 = new Line();
-		line.setStartX(100);
-		line.setStartY(150);
-		line.setEndX(500);
-		line.setEndY(150);
-		
-		
-		line2.setStartX(100);
-		line2.setStartY(250);
-		line2.setEndX(500);
-		line2.setEndY(250);
-		StackPane secondaryLayout = new StackPane();
-		
-		secondaryLayout.getChildren().add(line);
-		
-		
-		Scene secondScene = new Scene(secondaryLayout, 230, 100);
-
-		// New window (Stage)
-		Stage newWindow = new Stage();
-		newWindow.setTitle("Sheet Music");
-		newWindow.setScene(secondScene);
-		
-		// Set position of second window, related to primary window.
-		newWindow.setX( 200);
-		newWindow.setY( 100);
-		
-		 
-        
-		newWindow.show();
-		
-//		chirag
-		
-		
-
-		String xml = converter.getMusicXML();
-		ParseIntoSheetMusic parser= new ParseIntoSheetMusic(xml);
-		String[] songname = parser.parseMusicXML();
-		int divisions = parser.divisions;
-		
-		for (Note i :parser.getNotesOfSong()) {System.out.println(i.getPitch()+i.getOctave()+i.getDuration()+i.getMeasure());}
-		System.out.println(parser.divisions);
-		
-		
 		
 	}
 
