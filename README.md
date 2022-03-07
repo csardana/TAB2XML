@@ -29,7 +29,7 @@ Note: If you don't have a Personal Access Token, Please look at our section [How
 
 ### Setting up Gradle and Running the Application
 1. Open Preferences -> Select Gradle -> Specific Gradle version -> Apply and close. 
-<img src="Documentation/Pictures/um7.png" width="500">
+<img src="Documentation/Pictures/UM7new.png" width="500">
 
 2. To get gradle tasks so the application can run, "Run -> Show View -> Other" 
 <img src="Documentation/Pictures/um8.png" width="300">
