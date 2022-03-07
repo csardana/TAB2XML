@@ -69,7 +69,6 @@ public class PreviewFX {
 					// NOTE: If the previous staff didn't have enough space to fit a measure in it, this 'else'
 					// makes sure a bar line isn't added after a new staff is created.
 					if(measureIndex > 1 && measureIndex < contentMap.get(partIndex).size() + 1) {
-						//System.out.println("Yes");
 						Line barLine = this.constructBarLine(this.posTracker);
 						parentAnchor.getChildren().add(barLine);
 					}
@@ -125,9 +124,7 @@ public class PreviewFX {
 			
 			parentAnchor.getChildren().add(barLine);
 		}
-		// NOTE: Not necessary until the music score gets assembled in the constructor...
-		//gridPane.add(pane, 0, this.numOfStaffs); // Attach AnchorPane to root GridPane.
-		//this.numOfStaffs++; // Increment global counter of staffs.
+	
 		return parentAnchor;
 	}
 	

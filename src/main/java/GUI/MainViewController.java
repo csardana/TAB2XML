@@ -345,11 +345,12 @@ public class MainViewController extends Application {
 			root = loader.load();
 			PreviewController controller = loader.getController();
 			controller.setContentManager(musicContent);
-			controller.buildPane();
+			//System.out.println("Yes");
+			//controller.buildPane();
 
 			Scene scene = new Scene(root);
 
-			stage.setTitle("Preview Music");
+			stage.setTitle("Preview Sheet Music");
 			stage.setWidth(820);
 			stage.setHeight(450);
 			stage.setResizable(false);
