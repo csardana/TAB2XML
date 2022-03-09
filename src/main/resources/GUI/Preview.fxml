@@ -51,7 +51,7 @@
             <HBox alignment="CENTER_LEFT" prefHeight="100.0" spacing="5.0" AnchorPane.leftAnchor="14.0">
                <children>
                   <Label prefHeight="25.6" text="Go To Measure" textFill="#ffffffbf" />
-                  <TextField prefWidth="48.0" />
+                  <TextField fx:id="gotoMeasureField" prefWidth="48.0" />
                   <Button fx:id="goToMeasureButton" mnemonicParsing="false" onAction="#goToMeasureButtonHandle" text="Go" />
                </children>
             </HBox>

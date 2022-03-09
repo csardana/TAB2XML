@@ -1,5 +1,7 @@
 package GUI;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +27,7 @@ public class PreviewFX {
 	GridPane gridPane;
 	int numOfStaffs;
 	double posTracker;
+	HashMap<String, String> posTrackerList = new HashMap(); 
 	
 	// Defining staff line positions with respect to the size of one pane:
 	int[] linePositions = {50, 70, 90, 110, 130, 150};
@@ -80,6 +83,7 @@ public class PreviewFX {
 					parentAnchor.getChildren().add(timeSig);
 				}
 				
+				posTrackerList.put(Integer.toString(measureIndex), posTracker + ":" + numOfStaffs);
 				GridPane measureGrid = this.constructMeasureGrid(partIndex, measureIndex);
 				parentAnchor.getChildren().add(measureGrid); // Add measureGrid to parent Anchor.
 				
@@ -90,6 +94,10 @@ public class PreviewFX {
 	
 	public GridPane getGridPane() {
 		return this.gridPane;
+	}
+	
+	public HashMap<String, String> getPosTrackerList() {
+		return posTrackerList;
 	}
 	
 	public AnchorPane constructStaff() {
