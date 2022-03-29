@@ -1,7 +1,13 @@
 package GUI;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 
 import javafx.util.Duration;  
@@ -17,12 +23,20 @@ import org.jfugue.player.ManagedPlayer;
 import org.jfugue.player.Player;
 import org.staccato.StaccatoParserListener;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Image;
+import com.itextpdf.text.pdf.PdfContentByte;
+import com.itextpdf.text.pdf.PdfDocument;
+import com.itextpdf.text.pdf.PdfWriter;
+
 import converter.Converter;
 import converter.Instrument;
 import javafx.animation.FadeTransition;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Alert;
@@ -110,6 +124,26 @@ public class PreviewController {
 		scrollPane.setContent(gridPane);
 	}
 
+	private BufferedImage generate_png_from_container(WritableImage snapshot) {
+        BufferedImage tempImg = SwingFXUtils.fromFXImage(snapshot, null);
+        BufferedImage img = null;
+        byte[] imageInByte;
+        try {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(tempImg, "png", baos);
+            baos.flush();
+            imageInByte = baos.toByteArray();
+            baos.close();
+            InputStream in = new ByteArrayInputStream(imageInByte);
+            img = ImageIO.read(in);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+       //the final image sent to the PDJpeg
+       return img;
+	}
+	
 	@FXML
 	private void saveMusicSheetButtonHandle() {
 		// TO-DO:
@@ -120,13 +154,39 @@ public class PreviewController {
 		fileChooser.setTitle("Save");
 		fileChooser.setInitialDirectory(new File(Settings.getInstance().outputFolder));
 		fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Image", "*.png"));
+		fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("PDF", "*.pdf"));
 		File newFile = fileChooser.showSaveDialog(stage);
 		if (newFile != null) {
-			try {
+			String fileName = newFile.getName();
+			String fileExtension = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
+			if(fileExtension.equals("png")) {
+				try {
+					WritableImage image = gridPane.snapshot(new SnapshotParameters(), null);
+					ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", newFile);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			} else {
 				WritableImage image = gridPane.snapshot(new SnapshotParameters(), null);
-				ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", newFile);
-			} catch (Exception e) {
-				e.printStackTrace();
+				BufferedImage bufferedImage = generate_png_from_container(image);
+				Document document = new Document();
+		        PdfWriter writer;
+				try {
+					writer = PdfWriter.getInstance(document,
+					                       new FileOutputStream(newFile.getAbsolutePath()));
+			        document.open();
+			        PdfContentByte pdfCB = new PdfContentByte(writer);
+			        Image image2 = Image.getInstance(pdfCB, bufferedImage, 1);
+			        image2.scaleToFit(500, 500);
+			        document.add(image2);
+			        document.close();
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (DocumentException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 		}
 	}

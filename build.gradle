@@ -38,6 +38,8 @@ dependencies {
     testImplementation "org.testfx:testfx-junit5:4.0.16-alpha"
 
     implementation 'com.github.JensPiegsa:jfugue:5.0.9'
+    
+    implementation 'com.lowagie:itext:4.2.0'     // HARSIMRAN added this for pdf!!!!
 
 }
 
@@ -74,7 +76,7 @@ task testDebug {
 
 javafx {
     version = "17.0.1"
-    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.swing' ]
+    modules = [ 'javafx.controls', 'javafx.fxml', 'javafx.swing', 'javafx.web', 'javafx.graphics']
 }
 
 run {

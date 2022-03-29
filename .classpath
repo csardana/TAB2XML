@@ -33,5 +33,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
 	<classpathentry kind="lib" path="/Users/harsimransaini/git/TAB2XML_2/lib/javafx-swing-18-ea+11-linux.jar"/>
+	<classpathentry kind="lib" path="/Users/harsimransaini/git/TAB2XML_2/lib/itextpdf-4.2.0.jar"/>
 	<classpathentry kind="output" path="bin/default"/>
 </classpath>
