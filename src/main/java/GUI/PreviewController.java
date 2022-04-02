@@ -67,7 +67,8 @@ public class PreviewController {
 	MainViewController mvc;
 	ManagedPlayer managedPlayer;
 	PreviewFX previewFX;
-	
+	private int tempoSpeed = 300;
+
 	@FXML BorderPane borderPane;
 	@FXML ScrollPane scrollPane;
 	@FXML Button goToMeasureButton;
@@ -75,6 +76,10 @@ public class PreviewController {
 	@FXML Button playMusicSheetButton;
 	@FXML Button pauseMusicSheetButton;
 	@FXML TextField gotoMeasureField;
+	@FXML Button tempoButton;
+	@FXML TextField changeTempoField;
+
+
 
 	
 	// Column span preferred width: 750px
@@ -204,7 +209,7 @@ public class PreviewController {
 		conv.update();
 		parser.parse(conv.getMusicXML());
 		Player player = new Player();
-		org.jfugue.pattern.Pattern musicXMLPattern = listener.getPattern().setTempo(300)
+		org.jfugue.pattern.Pattern musicXMLPattern = listener.getPattern().setTempo(this.tempoSpeed)
 				.setInstrument(this.instrumentCheck);
 		Sequence mySequence = player.getSequence(musicXMLPattern);
 		ManagedPlayer OurPlayer = player.getManagedPlayer();
@@ -236,6 +241,19 @@ public class PreviewController {
 			this.managedPlayer.finish();
 		}
 	}
+	@FXML
+	private void tempoButtonHandle() {
+		try {
+			this.tempoSpeed = Integer.parseInt(changeTempoField.getText());
+		  } catch (NumberFormatException e) {
+			  Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setContentText("Enter a valid integer");
+				alert.setHeaderText(null);
+				alert.show();
+		  }
+		
+	}
+
 
 	@FXML
 	private void goToMeasureButtonHandle() {
