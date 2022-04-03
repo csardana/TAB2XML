@@ -265,6 +265,7 @@ public class PreviewController {
 		System.out.println("Goto Measure Clicked:" + gotoMeasureField.getText());
 		if(posY == 0) {
 			posY = 20;
+			
 		} else {
 			posY = posY * 200;
 		}
@@ -276,7 +277,7 @@ public class PreviewController {
 		text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 30));
 		text.setFill(Color.GRAY);
 		FadeTransition ft = new FadeTransition();
-		ft.setDuration(Duration.millis(3000));
+		ft.setDuration(Duration.millis(4000));
 		ft.setFromValue(10);
 		ft.setToValue(0);
 		ft.setCycleCount(1);
@@ -284,6 +285,15 @@ public class PreviewController {
 		ft.setNode(text);
 		ft.play();
 		gridPane.getChildren().add(text);
+		double textBound = posY + 70.00;
+		double thisBound = gridPane.getBoundsInLocal().getMaxY();
+		double scrollY = textBound/thisBound;
+		if(scrollY < 0.1) {
+			scrollY = 0.0;
+		} else if(scrollY > 0.8) {
+			scrollY = 1.0;
+		}
+		scrollPane.setVvalue(scrollY);
 	}
 
 }
