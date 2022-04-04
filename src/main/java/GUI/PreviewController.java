@@ -10,7 +10,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 
-import javafx.util.Duration;  
+import javafx.util.Duration;
+import models.preview.content.ContentManager;
+import models.preview.content.PreviewDrumMS;
+import models.preview.content.PreviewGuitarMS;
 
 import javax.imageio.ImageIO;
 import javax.sound.midi.InvalidMidiDataException;
@@ -54,7 +57,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
-import models.content.ContentManager;
 import nu.xom.ParsingException;
 import nu.xom.ValidityException;
 import utility.Settings;
@@ -98,33 +100,22 @@ public class PreviewController {
 		this.mvc = mvc;
 		if (Settings.getInstance().getInstrument() == Instrument.GUITAR) {
 			this.instrumentCheck = "GUITAR";
-			this.buildPane();
+			this.previewFX = new PreviewGuitarMS(musicContent, 6);
 
 		} else if (Settings.getInstance().getInstrument() == Instrument.DRUMS) {
-			// Implement later...
-			Label label = new Label();
-			label.setPrefWidth(750);
-			label.setText("Feature is still in development.");
-			label.setFont(Font.font(50));
-			label.setAlignment(Pos.CENTER);
-			scrollPane.setContent(label);
-
-			this.playMusicSheetButton.setDisable(true);
-			this.pauseMusicSheetButton.setDisable(true);
-			this.goToMeasureButton.setDisable(true);
-			this.saveMusicSheetButton.setDisable(true);
-			// this.instrumentCheck = "BASS_DRUM";
+			//this.instrumentCheck = "DRUMS";
+			this.previewFX = new PreviewDrumMS(musicContent, 5);
 
 		} else { // BASS
 			// Implement later.
 			// this.instrumentCheck = "Acoustic_Bass";
 
 		}
+		this.buildPane(); // Construct gridPane.
 	}
 
 	private void buildPane() {
-		previewFX = new PreviewFX(this.musicContent);
-		GridPane gridPane = previewFX.getGridPane();
+		GridPane gridPane = this.previewFX.getGridPane();
 		this.gridPane = gridPane;
 		scrollPane.setContent(gridPane);
 	}

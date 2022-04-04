@@ -1,4 +1,4 @@
-package models.content;
+package models.preview.content;
 
 import java.util.List;
 import java.util.Map;

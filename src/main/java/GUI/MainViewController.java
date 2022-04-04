@@ -41,8 +41,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
-import models.content.ContentManager;
-import models.content.GuitarContent;
+import models.preview.content.ContentManager;
+import models.preview.content.GuitarContent;
 import utility.Range;
 import utility.Settings;
 
@@ -318,7 +318,7 @@ public class MainViewController extends Application {
 			musicContent = new GuitarContent(converter.getScore().getModel());
 			//((GuitarContent) musicContent).getCrucialNoteData(2);
 		} else if(Settings.getInstance().getInstrument() == Instrument.DRUMS) {
-			// Implement later.
+			musicContent = new ContentManager(converter.getScore().getModel());
 		} else { // BASS
 			// Implement later.
 		}
