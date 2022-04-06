@@ -69,7 +69,7 @@ public class PreviewController {
 	MainViewController mvc;
 	ManagedPlayer managedPlayer;
 	PreviewFX previewFX;
-	private int tempoSpeed = 300;
+	private int tempoSpeed = 150;
 
 	@FXML BorderPane borderPane;
 	@FXML ScrollPane scrollPane;
@@ -100,17 +100,15 @@ public class PreviewController {
 		this.mvc = mvc;
 		if (Settings.getInstance().getInstrument() == Instrument.GUITAR) {
 			this.instrumentCheck = "GUITAR";
-			this.previewFX = new PreviewGuitarMS(musicContent, 6);
-
+			
 		} else if (Settings.getInstance().getInstrument() == Instrument.DRUMS) {
-			//this.instrumentCheck = "DRUMS";
-			this.previewFX = new PreviewDrumMS(musicContent, 5);
+			this.instrumentCheck = "DRUMS";
 
 		} else { // BASS
-			// Implement later.
-			// this.instrumentCheck = "Acoustic_Bass";
+			this.instrumentCheck = "Acoustic_Bass";
 
 		}
+		this.previewFX = new PreviewFX(musicContent, 6);
 		this.buildPane(); // Construct gridPane.
 	}
 

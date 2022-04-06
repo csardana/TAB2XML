@@ -19,8 +19,9 @@ import javafx.scene.text.Text;
 import models.measure.Measure;
 import models.measure.note.Note;
 import models.preview.content.ContentManager;
+import models.preview.content.DrawMeasure;
 
-public abstract class PreviewFX {
+public class PreviewFX {
 	// Defining default pane height and width:
 	double PANE_WIDTH = 750;
 	double PANE_HEIGHT = 200;
@@ -65,6 +66,7 @@ public abstract class PreviewFX {
 					// If true, add a bar line to separate measures. If false, ignore.
 					//System.out.println("Has space.");
 					if(measureIndex > 1 && measureIndex < contentMap.get(partIndex).size() + 1) {
+						this.posTracker += 30;
 						Line barLine = this.constructBarLine(this.posTracker);
 						parentAnchor.getChildren().add(barLine);
 					}
@@ -86,8 +88,13 @@ public abstract class PreviewFX {
 				}
 				
 				posTrackerList.put(Integer.toString(measureIndex), posTracker + ":" + numOfStaffs);
-				AnchorPane measureAnchor = this.constructMeasure(partIndex, measureIndex);
+				DrawMeasure drawMeasure = new DrawMeasure(contentMap.get(partIndex).get(measureIndex).getNotesBeforeBackup(), this.linePositions);
+				drawMeasure.draw();
+				AnchorPane measureAnchor = drawMeasure.getDrawnMeasure();
 				parentAnchor.getChildren().add(measureAnchor); // Add measureGrid to parent Anchor.
+				AnchorPane.setLeftAnchor(measureAnchor, this.posTracker);
+				this.posTracker += drawMeasure.getDrawnMeasureSize();
+				System.out.println(this.posTracker);
 			}
 		}
 		this.gridPane.add(parentAnchor, 0, this.numOfStaffs);
@@ -149,8 +156,6 @@ public abstract class PreviewFX {
 		System.out.println("Barline: " + posTracker);
 		AnchorPane.setLeftAnchor(barLine, posTracker);
 		
-		this.posTracker += 15;
-		
 		return barLine;
 	}
 	
@@ -170,7 +175,9 @@ public abstract class PreviewFX {
 		AnchorPane.setTopAnchor(clefBox, 39.0); //~40px
 		AnchorPane.setBottomAnchor(clefBox, 39.0); //~40px
 		AnchorPane.setLeftAnchor(clefBox, 5.0);
-
+		
+		this.posTracker += 20;
+		
 		return clefBox;
 	}
 	
@@ -187,18 +194,17 @@ public abstract class PreviewFX {
 		timeSigBox.getChildren().addAll(tsnum, tsden);
 		
 		AnchorPane.setTopAnchor(timeSigBox, 59.0); //~60px
-		AnchorPane.setBottomAnchor(timeSigBox, 59.0); //~60px
-		AnchorPane.setLeftAnchor(timeSigBox, this.posTracker);
+		//AnchorPane.setBottomAnchor(timeSigBox, 59.0); //~60px
+		AnchorPane.setLeftAnchor(timeSigBox, this.posTracker + 20);
 		
-		//this.posTracker += 30;
+		this.posTracker += 30;
 		
 		return timeSigBox;
 	}
 	
-	public abstract AnchorPane constructMeasure(int partIndex, int measureIndex); // Abstract might not be needed!!!
-	
-	//public abstract AnchorPane constructNote(Note note);
-	
+	// !!!
+	// NEEDS TO GET UPDATED BY FINDING THE DIFFERENCE BETWEEN THIS.POSTRACKER AND DRAWMEASURE.GETMEASURESIZE()!!!
+	// !!!
 	public boolean staffHasSpace(int partIndex, int measureIndex) {
 		// Method to check when a new staff needs to be created based on measure sizes.
 		double sizeTracker = 0.0;
@@ -208,12 +214,12 @@ public abstract class PreviewFX {
 			Note note = noteList.get(i);
 			// Check if note is in a chord: If true, ignore. If false, increment sizeTracker.
 			if(note.getChord() == null) {
-				sizeTracker += 30.0;
+				sizeTracker += 15;
 			}
 		}
 		// Check if timeSig needs to be changed. If true, increment sizeTracker. If false, ignore.
 		if(this.isDifferentTimeSig(partIndex, measureIndex)) {
-			sizeTracker += 30;
+			sizeTracker += 50;
 		}
 		//System.out.println(sizeTracker); // For testing purposes.
 		return (PANE_WIDTH - (this.posTracker + sizeTracker)) > 0;
