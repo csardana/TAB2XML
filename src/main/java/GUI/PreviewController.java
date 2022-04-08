@@ -67,7 +67,7 @@ public class PreviewController {
 	MainViewController mvc;
 	ManagedPlayer managedPlayer;
 	PreviewFX previewFX;
-	private int tempoSpeed = 300;
+	private int tempoSpeed = 150;
 	
 	@FXML BorderPane borderPane;
 	@FXML ScrollPane scrollPane;
