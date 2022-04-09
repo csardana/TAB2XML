@@ -134,16 +134,17 @@ public class PreviewController {
 	@FXML
 	private void playMusicSheetButtonHandle()
 			throws ValidityException, ParsingException, IOException, ParserConfigurationException {
-		// TO-DO:
-		// - Reorganize if time permits.
 
+//get the listener 
 		StaccatoParserListener listener = new StaccatoParserListener();
 		MusicXmlParser parser = new MusicXmlParser();
 		parser.addParserListener(listener);
 		Converter conv = new Converter(this.mvc);
 		conv.update();
 		parser.parse(conv.getMusicXML());
+		//The player which plays the music 
 		Player player = new Player();
+		//can set the tempo here 
 		org.jfugue.pattern.Pattern musicXMLPattern = listener.getPattern().setTempo(300)
 				.setInstrument(this.instrumentCheck);
 		Sequence mySequence = player.getSequence(musicXMLPattern);
@@ -167,8 +168,7 @@ public class PreviewController {
 	private void pauseMusicSheetButtonHandle() {
 		this.managedPlayer.pause();
 		this.managedPlayer.getTickLength();
-		// this.playMusicSheetButton.setDisable(false);
-		// this.pauseMusicSheetButton.setDisable(true);
+
 	}
 
 	private void onExit() {
