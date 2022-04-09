@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" style="-fx-background-color: #323232;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PreviewController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="800.0" style="-fx-background-color: #323232;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.PreviewController">
    <center>
-      <ScrollPane fx:id="scrollPane" fitToHeight="true" prefHeight="400.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="scrollPane" fitToHeight="true" prefHeight="800.0" prefWidth="769.0" style="-fx-background-color: #ffffff;" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets left="10.0" right="10.0" />
          </BorderPane.margin>
@@ -43,7 +43,7 @@
                      <children>
                       <Label prefHeight="25.6" text="Change Tempo Speed" textFill="#ffffffbf" />
                		    <TextField fx:id="changeTempoField" prefWidth="48.0" />
-                        <Button fx:id="tempoButton"  mnemonicParsing="false" onAction="#tempoButtonHandle" prefHeight="26.0" prefWidth="120.0" text="Apply Tempo" />
+                        <Button fx:id="tempoButton" mnemonicParsing="false" onAction="#tempoButtonHandle" prefHeight="26.0" prefWidth="120.0" text="Apply Tempo" />
                         <Button fx:id="playMusicSheetButton" mnemonicParsing="false" onAction="#playMusicSheetButtonHandle" text="Play" />
                         <Button fx:id="pauseMusicSheetButton" mnemonicParsing="false" onAction="#pauseMusicSheetButtonHandle" text="Pause" />
                      </children>

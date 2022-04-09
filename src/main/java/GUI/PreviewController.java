@@ -100,15 +100,17 @@ public class PreviewController {
 		this.mvc = mvc;
 		if (Settings.getInstance().getInstrument() == Instrument.GUITAR) {
 			this.instrumentCheck = "GUITAR";
+			this.previewFX = new PreviewFX(musicContent, 6);
 			
 		} else if (Settings.getInstance().getInstrument() == Instrument.DRUMS) {
 			this.instrumentCheck = "DRUMS";
+			this.previewFX = new PreviewFX(musicContent, 5);
 
 		} else { // BASS
 			this.instrumentCheck = "Acoustic_Bass";
 
 		}
-		this.previewFX = new PreviewFX(musicContent, 6);
+		
 		this.buildPane(); // Construct gridPane.
 	}
 
