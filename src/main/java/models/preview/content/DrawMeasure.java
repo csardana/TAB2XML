@@ -89,7 +89,6 @@ public class DrawMeasure {
 				} else { // The note is attached to a chord.
 					if(notesInChord.isEmpty()) { // The previous note will be in the same chord.
 						this.numOfChords ++;
-						System.out.println("Yes");
 						notesInChord.add(this.notes.get(i-1));
 					} 
 					notesInChord.add(note);
@@ -109,7 +108,6 @@ public class DrawMeasure {
 			AnchorPane.setTopAnchor(notePane, notePosition);
 			AnchorPane.setLeftAnchor(notePane, this.sizeTracker);
 		}
-		System.out.println("Chords in measure: " + this.numOfChords);
 	}
 	
 	private double getNotePosition(Note note) {

@@ -129,7 +129,6 @@ public class PreviewFX {
 		double heightDiff = PANE_HEIGHT - this.staffHeight;
 		for(int i = 0; i < this.numOfStaffLines; i++) {
 			this.linePositions[i] = (heightDiff / 2) + (i * 20);
-			System.out.println(this.linePositions[i]);
 		}
 	}
 	
@@ -146,7 +145,6 @@ public class PreviewFX {
 			staffLine.setStartX(0 - (PANE_WIDTH / 2));
 			staffLine.setEndX((PANE_WIDTH / 2));
 			staffLine.setLayoutY(linePositions[i]);
-			System.out.println(this.linePositions[i]);
 			staffLine.setStroke(Color.BLACK);
 			
 			parentAnchor.getChildren().add(staffLine);
