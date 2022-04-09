@@ -258,7 +258,7 @@ public class PreviewController {
 			posY = 20;
 			
 		} else {
-			posY = posY * 200;
+			posY = posY * 220;
 		}
 		
 		Text text = new Text();

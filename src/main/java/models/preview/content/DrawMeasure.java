@@ -8,6 +8,7 @@ import converter.Instrument;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Font;
@@ -161,6 +162,7 @@ public class DrawMeasure {
 		notePane.setPrefHeight(20);
 		
 		// Type of note head:
+		String noteType = note.getType();
 		Notehead noteHead = note.getNotehead();
 		
 		// Note creation:
@@ -178,7 +180,16 @@ public class DrawMeasure {
 			line2.setEndY(10);
 			
 			notePane.getChildren().addAll(line1,line2);
-		} else { // Quarter note.
+		} else if (noteType.equals("half")) { // Half note.
+			Ellipse ellipse = new Ellipse();
+			ellipse.setRadiusX(6);
+			ellipse.setRadiusY(10);
+			ellipse.setRotate(27.5);
+			ellipse.setFill(Color.WHITE);
+			ellipse.setStroke(Color.BLACK);
+			
+			notePane.getChildren().add(ellipse);
+		} else { // Quarter, even though it's "eighth". Fix later.
 			Ellipse ellipse = new Ellipse();
 			ellipse.setRadiusX(6);
 			ellipse.setRadiusY(10);
