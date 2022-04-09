@@ -166,13 +166,17 @@ public class PreviewController {
 
 	@FXML
 	private void pauseMusicSheetButtonHandle() {
+		//uses pause function in jfugue to pause the music 
 		this.managedPlayer.pause();
+		//was getting the tick length to see if the music location can be considered
 		this.managedPlayer.getTickLength();
 
 	}
 
 	private void onExit() {
+		//in order to pause the music
 		if (this.managedPlayer.isPlaying() || this.managedPlayer.isPaused()) {
+			//in order to exit the player
 			this.managedPlayer.finish();
 		}
 	}
