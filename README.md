@@ -1,4 +1,10 @@
 # TAB2XML EECS 2311 Software Design Project (Winter 2022)
+## Group Members: 
+Aleksander Weinberger </br>
+Harsimran Saini </br>
+Chirag Sardana </br>
+Shaharyar Choudhry </br>
+Hoshner Tavadia </br>
 
 [How to Import project to eclipse via Github](https://github.com/csardana/TAB2XML#How-to-Import-project-to-eclipse-via-Github) </br>
 [Setting up Gradle and Running the Application](https://github.com/csardana/TAB2XML#Setting-up-Gradle-and-Running-the-Application)</br>
