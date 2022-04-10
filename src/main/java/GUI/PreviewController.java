@@ -10,7 +10,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 
-import javafx.util.Duration;  
+import javafx.util.Duration;
+import models.preview.content.ContentManager;
+import models.preview.content.PreviewDrumMS;
+import models.preview.content.PreviewGuitarMS;
 
 import javax.imageio.ImageIO;
 import javax.sound.midi.InvalidMidiDataException;
@@ -54,7 +57,6 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Window;
-import models.content.ContentManager;
 import nu.xom.ParsingException;
 import nu.xom.ValidityException;
 import utility.Settings;
@@ -68,16 +70,18 @@ public class PreviewController {
 	ManagedPlayer managedPlayer;
 	PreviewFX previewFX;
 	private int tempoSpeed = 150;
-	
+
 	@FXML BorderPane borderPane;
 	@FXML ScrollPane scrollPane;
 	@FXML Button goToMeasureButton;
 	@FXML Button saveMusicSheetButton;
 	@FXML Button playMusicSheetButton;
 	@FXML Button pauseMusicSheetButton;
-	@FXML Button tempoButton;
 	@FXML TextField gotoMeasureField;
+	@FXML Button tempoButton;
 	@FXML TextField changeTempoField;
+
+
 
 	
 	// Column span preferred width: 750px
@@ -96,33 +100,22 @@ public class PreviewController {
 		this.mvc = mvc;
 		if (Settings.getInstance().getInstrument() == Instrument.GUITAR) {
 			this.instrumentCheck = "GUITAR";
-			this.buildPane();
-
+			this.previewFX = new PreviewFX(musicContent, 6);
+			
 		} else if (Settings.getInstance().getInstrument() == Instrument.DRUMS) {
-			// Implement later...
-			Label label = new Label();
-			label.setPrefWidth(750);
-			label.setText("Feature is still in development.");
-			label.setFont(Font.font(50));
-			label.setAlignment(Pos.CENTER);
-			scrollPane.setContent(label);
-
-			this.playMusicSheetButton.setDisable(true);
-			this.pauseMusicSheetButton.setDisable(true);
-			this.goToMeasureButton.setDisable(true);
-			this.saveMusicSheetButton.setDisable(true);
-			// this.instrumentCheck = "BASS_DRUM";
+			this.instrumentCheck = "DRUMS";
+			this.previewFX = new PreviewFX(musicContent, 5);
 
 		} else { // BASS
-			// Implement later.
-			// this.instrumentCheck = "Acoustic_Bass";
+			this.instrumentCheck = "Acoustic_Bass";
 
 		}
+		
+		this.buildPane(); // Construct gridPane.
 	}
 
 	private void buildPane() {
-		previewFX = new PreviewFX(this.musicContent);
-		GridPane gridPane = previewFX.getGridPane();
+		GridPane gridPane = this.previewFX.getGridPane();
 		this.gridPane = gridPane;
 		scrollPane.setContent(gridPane);
 	}
@@ -209,6 +202,7 @@ public class PreviewController {
 		Player player = new Player();
 		org.jfugue.pattern.Pattern musicXMLPattern = listener.getPattern().setTempo(this.tempoSpeed)
 				.setInstrument(this.instrumentCheck);
+		System.out.print(this.tempoSpeed);
 		Sequence mySequence = player.getSequence(musicXMLPattern);
 		ManagedPlayer OurPlayer = player.getManagedPlayer();
 		this.managedPlayer = OurPlayer;
@@ -239,13 +233,20 @@ public class PreviewController {
 			this.managedPlayer.finish();
 		}
 	}
-
 	@FXML
 	private void tempoButtonHandle() {
-		this.tempoSpeed = Integer.parseInt(changeTempoField.getText());
+		try {
+			this.tempoSpeed = Integer.parseInt(changeTempoField.getText());
+		  } catch (NumberFormatException e) {
+			  Alert alert = new Alert(Alert.AlertType.ERROR);
+				alert.setContentText("Enter a valid integer");
+				alert.setHeaderText(null);
+				alert.show();
+		  }
+		
 	}
-	
-	
+
+
 	@FXML
 	private void goToMeasureButtonHandle() {
 		HashMap<String, String> posTrackerMap = previewFX.getPosTrackerList();
@@ -256,6 +257,7 @@ public class PreviewController {
 		System.out.println("Goto Measure Clicked:" + gotoMeasureField.getText());
 		if(posY == 0) {
 			posY = 20;
+			
 		} else {
 			posY = posY * 200;
 		}
@@ -267,7 +269,7 @@ public class PreviewController {
 		text.setFont(Font.font("verdana", FontWeight.BOLD, FontPosture.REGULAR, 30));
 		text.setFill(Color.GRAY);
 		FadeTransition ft = new FadeTransition();
-		ft.setDuration(Duration.millis(3000));
+		ft.setDuration(Duration.millis(4000));
 		ft.setFromValue(10);
 		ft.setToValue(0);
 		ft.setCycleCount(1);
@@ -275,6 +277,15 @@ public class PreviewController {
 		ft.setNode(text);
 		ft.play();
 		gridPane.getChildren().add(text);
+		double textBound = posY + 70.00;
+		double thisBound = gridPane.getBoundsInLocal().getMaxY();
+		double scrollY = textBound/thisBound;
+		if(scrollY < 0.1) {
+			scrollY = 0.0;
+		} else if(scrollY > 0.8) {
+			scrollY = 1.0;
+		}
+		scrollPane.setVvalue(scrollY);
 	}
 
 }
