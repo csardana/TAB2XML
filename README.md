@@ -13,6 +13,7 @@ Hoshner Tavadia </br>
 [Requirments Document](Documentation/Requirments_Document_Latest.pdf)</br>
 [User Manual](Documentation/User_Manual.pdf)</br> 
 [Testing Document](Documentation/Testing_Document_Latest.pdf) 
+[Design Document](Documentation/Design_Document_Latest.pdf)
 
 
 ## How to Import project to eclipse via Github
