@@ -10,9 +10,9 @@ Hoshner Tavadia </br>
 [Setting up Gradle and Running the Application](https://github.com/csardana/TAB2XML#Setting-up-Gradle-and-Running-the-Application)</br>
 [How to create a Personal Access Token](https://github.com/csardana/TAB2XML#How-to-create-a-Personal-Access-Token)
 ## Documentations
-[Requirments Document](Documentation/Requirments_pdf.pdf)</br>
+[Requirments Document](Documentation/Requirments_Document_Latest.pdf)</br>
 [User Manual](Documentation/User_Manual.pdf)</br> 
-[Testing Document](Documentation/Testing_Document.pdf) 
+[Testing Document](Documentation/Testing_Document_Latest.pdf) 
 
 
 ## How to Import project to eclipse via Github
